@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head> <!-- 정보 -->
+    <meta charset="UTF-8">
+    <title>'뉴스타파 20대 국회의원 정치후원금'의 클론 사이트</title>
+    <meta name="author" content="임국정">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta property="og:title" content="뉴스타파 20대 국회의원 정치후원금">
+    <meta property="og:url" content="http://pages.newstapa.org/n2002">
+    <meta property="og:site_name" content="'뉴스타파 20대 국회의원 정치후원금'의 클론 사이트">
+    <meta property="og:description" content="20대 국회의원 역대 4년간 후원금 분석">
+    <meta property="og:image" content="./img/thumb.png">
+    <link rel="shortcut icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="./multiselect.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body> <!-- 구조 -->
+    <div class="header">
+        <a href="https://newstapa.org/" target="_blank">
+            <div class="header__logo">
+                <img src="./img/logo.svg" alt="Newstapa logo">
+            </div>
+        </a>
+    </div>
+    <div class="main">
+        <div>
+            <img src="./img/mainicon.png" alt="아이콘" class="main-icon">
+            <h1 class="title">20대 국회의원 정치후원금</h1>
+            <p class="main-paragraph">뉴스타파에서 20대 국회의원의 역대 4년간 후원금을 분석했습니다. 국회의원들은 후원금을 얼마나, 누구에게 받았을까요? 궁금한 국회의원을 검색해 내역을 살펴보세요.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div id="app">
+            <div class="canvas">
+                <div class="multiselect">
+                    <div class="multiselect__select"></div>
+                    <div class="multiselect__tags">
+                        <div class="multiselect__tags-wrap" style="display: none;"></div>
+                        <div class="multiselect__spinner" style="display: none;"></div>
+                        <input name type="text" autocomplete="off" placeholder="국회의원 이름을 입력하세요" class="multiselect__input"
+                            style="width: 200px; position: absolute; padding: 0px;">
+                        <span class="multiselect__placeholder">
+                            국회의원 이름을 입력하세요
+                        </span>
+                    </div>
+                    <div class="multiselect__content-wrapper" style="max-height: 147px; display: none;">
+                        <ul class="multiselect__content" style="display: inline-block;">
+                            <li class="multiselect__element">
+                                <span class="multiselect__option">
+                                    <span>강병원 | 더불어민주당 | 은평구을</span>
+                                </span>
+                            </li>
+                            <li class="multiselect__element">
+                                <span class="multiselect__option">
+                                    <span>강창일 | 더불어민주당 | 제주시갑(미구현)</span>
+                                </span>
+                            </li>
+                            <li class="multiselect__element">
+                                <span class="multiselect__option">
+                                    <span>강훈식 | 더불어민주당 | 아산시을(미구현)</span>
+                                </span>
+                            </li>
+                            <li class="multiselect__element">
+                                <span class="multiselect__option">
+                                    <span>고용진 | 더불어민주당 | 노원구갑(미구현)</span>
+                                </span>
+                            </li>
+                            <li class="multiselect__element">
+                                <span class="multiselect__option">
+                                    <span>권미혁 | 더불어민주당 | 비례대표(미구현)</span>
+                                </span>
+                            </li>
+                            <li style="display: none;">
+                                <span class="multiselect__option">
+                                    <span>검색 결과가 없습니다.</span>
+                                </span>
+                            </li>
+                            <li style="display: none;">
+                                <span class="multiselect__option">
+                                    <span>List is empty.</span>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>      
+                <!--  -->
+                <div class="canvas-mini" style="height: auto; opacity: 1;">
+                    <div class="canvas-box canvas-box-border">
+                        <p class="minititle" id="minititle2016" style="display:none;">2016년 국회의원 후원금 순위</p>
+                        <p class="minititle" id="minititle2017" style="display:none">2017년 국회의원 후원금 순위</p>
+                        <p class="minititle" id="minititle2018" style="display:none">2018년 국회의원 후원금 순위</p>
+                        <p class="minititle" id="minititle2019" style="display:block">2019년 국회의원 후원금 순위</p>
+                        <ul class="slct">
+                            <input type="radio" id="rank2016" value="2016">
+                            <label for="rank2016">
+                                <li class="slct-li-year" id="slct-li-year2016">
+                                    2016년
+                                </li>
+                            </label> 
+                            <input type="radio" id="rank2017" value="2017">
+                            <label for="rank2017">
+                                <li class="slct-li-year" id="slct-li-year2017">
+                                    2017년
+                                </li>
+                            </label>
+                            <input type="radio" id="rank2018" value="2018">
+                            <label for="rank2018">
+                                <li class="slct-li-year" id="slct-li-year2018">
+                                    2018년
+                                </li>
+                            </label>
+                            <input type="radio" id="rank2019" value="2019">
+                            <label for="rank2019">
+                                <li class="slct-li-year slct-select" id="slct-li-year2019">
+                                    2019년
+                                </li>
+                            </label>
+                        </ul>
+                        <!--  -->
+                        <table class="rankTable">
+                            <thead>
+                                <th class="rankTable-center">순위</th>
+                                <th class="rankTable-center">사진</th>
+                                <th class="rankTable-center">이름</th>
+                                <th class="rankTable-center">정당</th>
+                                <th class="rankTable-center">선거구</th>
+                                <th class="rankTable-number">금액</th>
+                            </thead>
+                            <tbody id="rankTable__2016" style="display:none;">
+                                <tr>
+                                    <td class="rankTable-rank">1</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/박주선.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">박주선</td>
+                                    <td class="rankTable-center">민생당</td>
+                                    <td class="rankTable-center">광주 동구남구을</td>
+                                    <td class="rankTable-number">3억 4,255만 9,489원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">2</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/김진태.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">김진태</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">강원 춘천시</td>
+                                    <td class="rankTable-number">3억 1,844만 5,044원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">3</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/정용기.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">정용기</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">대전 대덕구</td>
+                                    <td class="rankTable-number">3억 1,435만 2,540원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">4</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/한정애.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">한정애</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 강서구병</td>
+                                    <td class="rankTable-number">3억 1,329만 4,000원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">5</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/양승조.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">양승조</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">충남 천안시병</td>
+                                    <td class="rankTable-number">3억 663만 7,100원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">6</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/전해철.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">전해철</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">경기 안산시상록구갑</td>
+                                    <td class="rankTable-number">3억 577만 2,267원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">7</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/강창일.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">강창일</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">제주 제주시갑</td>
+                                    <td class="rankTable-number">3억 560만 57원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">8</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/박영선.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">박영선</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 구로구을</td>
+                                    <td class="rankTable-number">3억 544만 7,944원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">9</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/심상정.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">심상정</td>
+                                    <td class="rankTable-center">정의당</td>
+                                    <td class="rankTable-center">경기 고양시갑</td>
+                                    <td class="rankTable-number">3억 483만 2,316원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">10</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/김영주.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">김영주</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 영등포구갑</td>
+                                    <td class="rankTable-number">3억 435만 8,301원</td>
+                                </tr>
+                            </tbody>
+                            <!--  -->
+                            <tbody id="rankTable__2017" style="display:none;">
+                                <tr>
+                                    <td class="rankTable-rank">1</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/박주민.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">박주민</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 은평구갑</td>
+                                    <td class="rankTable-number">3억 4,858만 921원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">2</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/노회찬.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">노회찬</td>
+                                    <td class="rankTable-center">정의당</td>
+                                    <td class="rankTable-center">경남 창원시성산구</td>
+                                    <td class="rankTable-number">3억 4,246만 8,972원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">3</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/유승희.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">유승희</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 성북구갑</td>
+                                    <td class="rankTable-number">3억 3,342만 5,072원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">4</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/강병원.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">강병원</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 은평구을</td>
+                                    <td class="rankTable-number">3억 2,579만 5,019원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">5</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/한정애.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">한정애</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 강서구병</td>
+                                    <td class="rankTable-number">3억 2,322만 5,112원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">6</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/황희.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">황희</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 양천구갑</td>
+                                    <td class="rankTable-number">3억 1,987만 688원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">7</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/이완영.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">이완영</td>
+                                    <td class="rankTable-center">자유한국당</td>
+                                    <td class="rankTable-center">경북 고령군성주군칠곡군</td>
+                                    <td class="rankTable-number">3억 1,309만 7,529원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">8</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/설훈.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">설훈</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">경기 부천시원미구을</td>
+                                    <td class="rankTable-number">3억 916만 8원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">9</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/주호영.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">주호영</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">대구 수성구을</td>
+                                    <td class="rankTable-number">3억 773만 5,263원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">10</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/안규백.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">안규백</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 동대문구갑</td>
+                                    <td class="rankTable-number">3억 634만 5,000원</td>
+                                </tr>
+                            </tbody>
+                            <!--  -->
+                            <tbody id="rankTable__2018" style="display: none;">
+                                <tr>
+                                    <td class="rankTable-rank">1</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/노웅래.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">노웅래</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 마포구갑</td>
+                                    <td class="rankTable-number">3억 2,379만 3,977원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">2</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/박주민.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">박주민</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 은평구갑</td>
+                                    <td class="rankTable-number">3억 2,143만 2,825원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">3</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/한정애.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">한정애</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 강서구병</td>
+                                    <td class="rankTable-number">3억 2,066만 5,000원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">4</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/이해찬.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">이해찬</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">세종특별자치시</td>
+                                    <td class="rankTable-number">3억 1,721만 8,751원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">5</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/주호영.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">주호영</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">대구 수성구을</td>
+                                    <td class="rankTable-number">3억 1,406만 299원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">6</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/박용진.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">박용진</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">서울 강북구을</td>
+                                    <td class="rankTable-number">3억 1,391만 550원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">7</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/안규백.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">안규백</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 동대문구갑</td>
+                                    <td class="rankTable-number">3억 1,216만 9,756원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">8</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/정동영.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">정동영</td>
+                                    <td class="rankTable-center">민생당</td>
+                                    <td class="rankTable-center">전북 전주시병</td>
+                                    <td class="rankTable-number">3억 987만 4,572원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">9</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/전재수.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">전재수</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">부산 북구강서구갑</td>
+                                    <td class="rankTable-number">3억 918만 4,742원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">10</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/김영주.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">김영주</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 영등포구갑</td>
+                                    <td class="rankTable-number">3억 909만 5,326원</td>
+                                </tr>
+                            </tbody>
+                            <!--  -->
+                            <tbody id="rankTable__2019">
+                                <tr>
+                                    <td class="rankTable-rank">1</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/백승주.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">백승주</td>
+                                    <td class="rankTable-center">미래한국당</td>
+                                    <td class="rankTable-center">경북 구미시갑</td>
+                                    <td class="rankTable-number">1억 7,555만 7,676원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">2</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/이언주.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">이언주</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">경기 광명시을</td>
+                                    <td class="rankTable-number">1억 7,329만 5,658원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">3</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/박명재.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">박명재</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">경북 포항시남구울릉군</td>
+                                    <td class="rankTable-number">1억 7,142만 18원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">4</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/윤소하.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">윤소하</td>
+                                    <td class="rankTable-center">정의당</td>
+                                    <td class="rankTable-center">비례대표</td>
+                                    <td class="rankTable-number">1억 6,811만 3,072원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">5</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/손혜원.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">손혜원</td>
+                                    <td class="rankTable-center">열린민주당</td>
+                                    <td class="rankTable-center">서울 마포구을</td>
+                                    <td class="rankTable-number">1억 6,781만 1,231원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">6</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/소병훈.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">소병훈</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">경기 광주시갑</td>
+                                    <td class="rankTable-number">1억 6,750만 126원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">7</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/이주영.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">이주영</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">경남 창원시마산합포구</td>
+                                    <td class="rankTable-number">1억 6,642만 3,636원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">8</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/유승희.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">유승희</td>
+                                    <td class="rankTable-center">더불어민주당</td>
+                                    <td class="rankTable-center">서울 성북구갑</td>
+                                    <td class="rankTable-number">1억 6,397만 3,018원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">9</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/정용기.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">정용기</td>
+                                    <td class="rankTable-center">미래통합당</td>
+                                    <td class="rankTable-center">대전 대덕구</td>
+                                    <td class="rankTable-number">1억 6,199만 9,180원</td>
+                                </tr>
+                                <tr>
+                                    <td class="rankTable-rank">10</td>
+                                    <td class="rankTable-center"><img
+                                            src="./img/이정미.jpeg" alt="photo" class="rankTable-photo"></td>
+                                    <td class="rankTable-name">이정미</td>
+                                    <td class="rankTable-center">정의당</td>
+                                    <td class="rankTable-center">비례대표</td>
+                                    <td class="rankTable-number">1억 6,197만 5,533원</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box popup">
+                        <p class="paragraph">데이터 : 최윤원, 임송이 | 데이터 시각화 : 임송이 </p>
+                    </div>
+                </div>
+                <!--  -->
+                <!--  -->
+                <div class="canvas-mini" style="height: auto; opacity: 1; display: none;">
+                    <div id="congressBox" class="canvas-box canvas-box-border" style="text-align: center;">
+                        <img src="./img/강병원.jpeg" alt="강병원" class="idPhoto idPhoto-minju">
+                        <p class="minititle">강병원</p>
+                        <p class="remark minju">더불어민주당 | 서울 은평구을 </p>
+                        <p class="remark">후원금 총액</p>
+                        <p class="number">9억  688만  7,182원</p>
+                    </div>
+                    <!--  -->
+                    <div id="yearsData" class="canvas-box canvas-box-border">
+                        <p class="minititle">4년간 후원금 변화</p>
+                        <ul class="slct">
+                            <li class="slct-li slct-select">
+                                <input type="radio" id="pickTotal" value="total">
+                                <label for="pickTotal">전체후원금</label>
+                            </li>
+                            <li class="slct-li">
+                                <input type="radio" id="pickHigh" value="high">
+                                <label for="pickHigh">연간 300만원 이상</label>
+                            </li>
+                        </ul>
+                        <p class="remark">
+                            <span style="color: rgb(244, 204, 0);">■ 선택한 의원의 후원금</span>
+                            <span style="color: rgb(204, 204, 204);">■ 1인당 평균 후원금</span>
+                        </p>
+                        <div id="barCanvas1">
+                            <svg width="700" height="300" class="barCanvas">
+                                <g transform="translate(20,20)">
+                                    <g class="barGroup" transform="translate(46.046511627906966, 0)">
+                                        <rect class="bar value" x="9.76744186046512" width="39.06976744186046"
+                                            y="184.20863868106446" height="65.79136131893554"></rect>
+                                        <rect class="bar average" x="58.604651162790695" width="39.06976744186046"
+                                            y="175.15088025146707" height="74.84911974853293"></rect>
+                                        <text class="bar-text value-text" y="134.20863868106446">
+                                            <tspan x="48.83720930232558" dy="0">1억</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">5,790만</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">4원</tspan>
+                                        </text>
+                                        <text class="bar-text average-text" y="135.15088025146707">
+                                            <tspan x="58.604651162790695" dy="0">1억</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">7,963만</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">8,588원</tspan>
+                                        </text>
+                                    </g>
+                                    <g class="barGroup" transform="translate(199.53488372093022, 0)">
+                                        <rect class="bar value" x="9.76744186046512" width="39.06976744186046"
+                                            y="114.25226583710973" height="135.74773416289025"></rect>
+                                        <rect class="bar average" x="58.604651162790695" width="39.06976744186046"
+                                            y="174.61359268932114" height="75.38640731067886"></rect>
+                                        <text class="bar-text value-text" y="64.25226583710973">
+                                            <tspan x="48.83720930232558" dy="0">3억</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">2,579만</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">5,019원</tspan>
+                                        </text>
+                                        <text class="bar-text average-text" y="134.61359268932114">
+                                            <tspan x="58.604651162790695" dy="0">1억</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">8,092만</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">8,076원</tspan>
+                                        </text>
+                                    </g>
+                                    <g class="barGroup" transform="translate(353.0232558139535, 0)">
+                                        <rect class="bar value" x="9.76744186046512" width="39.06976744186046"
+                                            y="134.95332200553668" height="115.04667799446332"></rect>
+                                        <rect class="bar average" x="58.604651162790695" width="39.06976744186046"
+                                            y="180.80182633637722" height="69.19817366362278"></rect>
+                                        <text class="bar-text value-text" y="84.95332200553668">
+                                            <tspan x="48.83720930232558" dy="0">2억</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">7,611만</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">2,567원</tspan>
+                                        </text>
+                                        <text class="bar-text average-text" y="140.80182633637722">
+                                            <tspan x="58.604651162790695" dy="0">1억</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">6,607만</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">6,340원</tspan>
+                                        </text>
+                                    </g>
+                                    <g class="barGroup" transform="translate(506.51162790697674, 0)">
+                                        <rect class="bar value" x="9.76744186046512" width="39.06976744186046"
+                                            y="188.717151195252" height="61.282848804748"></rect>
+                                        <rect class="bar average" x="58.604651162790695" width="39.06976744186046"
+                                            y="199.97540495900824" height="50.024595040991755"></rect>
+                                        <text class="bar-text value-text" y="138.717151195252">
+                                            <tspan x="48.83720930232558" dy="0">1억</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">4,707만</tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em"></tspan>
+                                            <tspan x="48.83720930232558" dy="1.2em">9,592원</tspan>
+                                        </text>
+                                        <text class="bar-text average-text" y="159.97540495900824">
+                                            <tspan x="58.604651162790695" dy="0">1억</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">2,005만</tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em"></tspan>
+                                            <tspan x="58.604651162790695" dy="1.2em">9,828원</tspan>
+                                        </text>
+                                    </g>
+                                    <g transform="translate(0,250)" fill="none" font-size="10" font-family="sans-serif"
+                                        text-anchor="middle">
+                                        <path class="domain" stroke="#000" d="M0.5,0V0.5H660.5V0"></path>
+                                        <g class="tick" opacity="1" transform="translate(99.76744186046511,0)">
+                                            <line stroke="#000" y2="6"></line>
+                                            <text fill="#000" y="9" dy="0.71em">2016년</text>
+                                        </g>
+                                        <g class="tick" opacity="1" transform="translate(253.25581395348837,0)">
+                                            <line stroke="#000" y2="6"></line>
+                                            <text fill="#000" y="9" dy="0.71em">2017년</text>
+                                        </g>
+                                        <g class="tick" opacity="1" transform="translate(406.74418604651163,0)">
+                                            <line stroke="#000" y2="6"></line>
+                                            <text fill="#000" y="9" dy="0.71em">2018년</text>
+                                        </g>
+                                        <g class="tick" opacity="1" transform="translate(560.2325581395348,0)">
+                                            <line stroke="#000" y2="6"></line>
+                                            <text fill="#000" y="9" dy="0.71em">2019년</text>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <!--  -->
+                        <div id="barCanvas2" style="display: none;">
+                            <svg width="700" height="300" class="barCanvas">
+                                <g transform="translate(20,20)">
+                                    <rect class="bar" x="110.00000000000003" width="27.49999999999999" y="240.5004008340014"
+                                        height="9.499599165998603"></rect>
+                                    <rect class="bar" x="247.5" width="27.49999999999999" y="242.41707069511784"
+                                        height="7.582929304882157"></rect>
+                                    <rect class="bar" x="385" width="27.49999999999999" y="243.83373972289954"
+                                        height="6.166260277100463"></rect>
+                                    <rect class="bar" x="522.4999999999999" width="27.49999999999999" y="248.00041333402223"
+                                        height="1.9995866659777732"></rect><text class="bar-text" x="123.75000000000003"
+                                        y="230.5004008340014">2,280만원</text><text class="bar-text" x="261.25"
+                                        y="232.41707069511784">1,820만원</text><text class="bar-text" x="398.75"
+                                        y="233.83373972289954">1,480만원</text><text class="bar-text" x="536.2499999999999"
+                                        y="238.00041333402223">480만원</text>
+                                    <g transform="translate(0,250)" fill="none" font-size="10" font-family="sans-serif"
+                                        text-anchor="middle">
+                                        <path class="domain" stroke="#000" d="M0.5,0V0.5H660.5V0"></path>
+                                        <g class="tick" opacity="1" transform="translate(123.75000000000003,0)">
+                                            <line stroke="#000" y2="6"></line><text fill="#000" y="9"
+                                                dy="0.71em">2016년</text>
+                                        </g>
+                                        <g class="tick" opacity="1" transform="translate(261.25,0)">
+                                            <line stroke="#000" y2="6"></line><text fill="#000" y="9"
+                                                dy="0.71em">2017년</text>
+                                        </g>
+                                        <g class="tick" opacity="1" transform="translate(398.75,0)">
+                                            <line stroke="#000" y2="6"></line><text fill="#000" y="9"
+                                                dy="0.71em">2018년</text>
+                                        </g>
+                                        <g class="tick" opacity="1" transform="translate(536.2499999999999,0)">
+                                            <line stroke="#000" y2="6"></line><text fill="#000" y="9"
+                                                dy="0.71em">2019년</text>
+                                        </g>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <p class="remark-except">※ 2018년, 2017년, 2016년도는 공직선거가 있는 해로서 평년 모금액(1억 5천만원)의 2배인 3억원까지 모금 가능</p>
+                    </div>
+                    <!--  -->
+                    <div class="canvas-box canvas-box-border">
+                        <p class="minititle" id="minititle16" style="display: none;">2016년 300만 원 초과 후원자 명단</p>
+                        <p class="minititle" id="minititle17" style="display: none;">2017년 300만 원 초과 후원자 명단</p>
+                        <p class="minititle" id="minititle18" style="display: none;">2018년 300만 원 초과 후원자 명단</p>
+                        <p class="minititle" id="minititle19">2019년 300만 원 초과 후원자 명단</p>
+                        <p class="remark">클릭하면 후원자 세부 정보를 볼 수 있습니다.</p>
+                        <ul class="slct">
+                            <input type="radio" id="y2016" value="2016">
+                            <label for="y2016">
+                                <li class="slct-li-year" id="y2016-li">2016년</li>
+                            </label>
+                            <input type="radio" id="y2017" value="2017">
+                            <label for="y2017">
+                                <li class="slct-li-year" id="y2017-li">2017년</li>
+                            </label>
+                            <input type="radio" id="y2018" value="2018">
+                            <label for="y2018">
+                                <li class="slct-li-year" id="y2018-li">2018년</li>
+                            </label>
+                            <input type="radio" id="y2019" value="2019">
+                            <label for="y2019">
+                                <li class="slct-li-year slct-select" id="y2019-li">2019년</li>
+                            </label>
+                        </ul>
+                        <p class="remark">
+                            <span style="color: rgb(68, 0, 255);">■ 21대 총선 출마자</span>
+                        </p>
+                        <p class="error-text" style="display: none;">검색 결과가 없습니다 </p>
+                        <div id="bubbleCanvas1" style="display: none;">
+                            <svg width="700" height="550" class="bubble">
+                                <g>
+                                    <circle class="node-circle" r="15" style="pointer-events: all;"
+                                        cx="419.516108075095" cy="275.85640035794756">
+                                    </circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="419.516108075095" y="275.85640035794756"
+                                        style="text-anchor: middle;">강양원</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="30" style="pointer-events: all;"
+                                        cx="307.44782089967055" cy="293.8323314933558">
+                                    </circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="307.44782089967055" y="293.8323314933558"
+                                        style="text-anchor: middle;">공진석</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="30" style="pointer-events: all;"
+                                        cx="366.41627868809366" cy="245.8966547657179">
+                                    </circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="366.41627868809366" y="245.8966547657179"
+                                        style="text-anchor: middle;">곽의상</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="30" style="pointer-events: all;"
+                                        cx="378.4214903131044" cy="320.9049423688704">
+                                    </circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="378.4214903131044" y="320.9049423688704"
+                                        style="text-anchor: middle;">안영수</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="23" style="pointer-events: all;"
+                                        cx="300.632634662953" cy="225.20184142792291">
+                                    </circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="300.632634662953" y="225.20184142792291"
+                                        style="text-anchor: middle;">오종남</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div id="bubbleCanvas2" style="display: none;">
+                            <svg width="700" height="550" class="bubble">
+                                <g>
+                                    <circle class="node-circle" r="30" style="pointer-events: all;"
+                                        cx="321.5795281499811" cy="249.25194705552892"></circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="321.5795281499811" y="249.25194705552892"
+                                        style="text-anchor: middle;">국정우</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="24" style="pointer-events: all;"
+                                        cx="318.766999290484" cy="318.94073715707725"></circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="318.766999290484" y="318.94073715707725"
+                                        style="text-anchor: middle;">김광중</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="18" style="pointer-events: all;"
+                                        cx="382.18138831680574" cy="229.4269996377783"></circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="382.18138831680574" y="229.4269996377783"
+                                        style="text-anchor: middle;">김승제</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="30" style="pointer-events: all;"
+                                        cx="383.4868175143803" cy="293.1287259350041"></circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="383.4868175143803" y="293.1287259350041"
+                                        style="text-anchor: middle;">송지훈</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div id="bubbleCanvas3" style="display: none;">
+                            <svg width="700" height="550" class="bubble">
+                                <g>
+                                    <circle class="node-circle" r="28" style="pointer-events: all;"
+                                        cx="389.31514741418664" cy="293.29199768333433"></circle>
+                                    <text class="node-title" dy=".2em" x="389.31514741418664" y="293.29199768333433"
+                                        style="text-anchor: middle;">김광중</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="30" style="pointer-events: all;"
+                                        cx="316.1501031720425" cy="300.7658267593814"></circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="316.1501031720425" y="300.7658267593814"
+                                        style="text-anchor: middle;">김무기</text>
+                                </g>
+                                <g>
+                                    <circle class="node-circle" r="30" style="pointer-events: all;"
+                                        cx="347.90672745658355" cy="232.51104197657003"></circle>
+                                    <text class="node-title" dy=".2em" x="347.90672745658355" y="232.51104197657003"
+                                        style="text-anchor: middle;">안식</text>
+                                </g>
+                            </svg>
+                        </div>
+
+                        <div id="bubbleCanvas4">
+                            <svg width="700" height="550" class="bubble">
+                                <g>
+                                    <circle class="node-circle" r="8" style="pointer-events: all;"
+                                        cx="349.9999999999962" cy="274.9999999999969"></circle>
+                                    <text class="node-title"
+                                        dy=".2em" x="349.9999999999962" y="274.9999999999969"
+                                        style="text-anchor: middle;">김광중</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <!--  -->               
+                    <div class="canvas-box canvas-box-border popup" id="donor1" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>오종남</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>4,300,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>김앤장법률사무소 고문[전] 통계청 청장</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>서울 종로구 적선동 1</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor2" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>곽의상</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>5,000,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>전북 김제시 백구면 번</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor3" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>강양원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>3,500,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>자영업</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>경기도 안산시 상록구 </td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor4" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>공진석</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>5,000,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>서울 강남구 삼성동 7</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor5" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>안영수</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>5,000,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>서울 강남구 역삼동 7</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor6" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>국정우</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>5,000,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>서울시 은평구 불광로 1길</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor7" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>김승제</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>3,800,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>서울시 은평구 진관2로</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor8" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>김광중</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>4,400,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>경기도 광명시 하안동</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor9" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>송지훈</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>5,000,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>전북 고창군 고창읍</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor10" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>안식</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>5,000,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>법무법인 한결한울 변호사</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>서울 종로구 종로</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor11" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>김무기</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>5,000,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td> 조각가</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>서울 은평구 대서문길</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor12" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>김광중</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>4,800,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>경기 광명시 하안동</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="canvas-box canvas-box-border popup" id="donor13" style="display: none;">
+                        <p class="minititle">후원자 정보</p>
+                        <table class="table">
+                            <tbody>
+                                <tr>
+                                    <td class="tbold">이름</td>
+                                    <td>김광중</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">총 후원금 금액 </td>
+                                    <td>2,400,000 원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">직업</td>
+                                    <td>회사원</td>
+                                </tr>
+                                <tr>
+                                    <td class="tbold">주소</td>
+                                    <td>경기 광명시 하안동 2</td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="tbold">21대 총선 출마</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--  -->
+                    <div class="canvas-box canvas-box-border popup"><p class="paragraph">데이터 : 최윤원, 임송이 | 데이터 시각화 : 임송이 </p></div>
+                    <div class="canvas-box popup close"><p class="close-title">처음으로 돌아가기</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer__box">
+            <img src="./img/logo-bright.svg" alt="logo white version" class="footer__logo">
+            <div class="footer__info">
+                <div class="footer__info__margin">
+                    <ul>
+                        <li>
+                            <a href="https://jebo.newstapa.org">제보</a>
+                            <span class="sep">|</span>
+                        </li>
+                        <li>
+                            <a href="https://goo.gl/forms/qSkAChcxDfPNcsgj2">인터뷰, 강의, 견학 요청</a>
+                            <span class="sep">|</span>
+                        </li>
+                        <li>
+                            <a href="https://kcij.org/contact">제휴, 협력 문의</a>
+                            <span class="sep">|</span>
+                        </li>
+                        <li>
+                            <a href="https://download.newstapa.org/common/html/terms5.html">청소년 보호정책</a>
+                            <span class="sep">|</span>
+                        </li>
+                        <li>
+                            <a href="https://kcij.org/faq">자주 묻는 질문(FAQ)</a>
+                            <span class="sep">|</span>
+                        </li>
+                        <li>
+                            <a href="https://newstapa.org/using">콘텐츠 사용원칙</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__info__margin">
+                    <p>서울특별시 중구 퇴계로 212-13(04625)</p>
+                    <p>사업자등록번호 : 117-82-66835 | 인터넷신문등록번호 : 서울,아02778 (2013년 8월 21일)</p>
+                    <p>대표자: 김용진 | 발행인/편집인:김용진 | 개인정보관리 책임자 : 김성근</p>
+                    <p> 전화 : 02-2038-0977 팩스번호 : 02-2038-0978 제보 전화 : 02-2038-8029 | webmaster@newstapa.org</p>
+                </div>
+                <div class="footer__info__margin">
+                    <p>Copyright © KCIJ, All Rights Reserved.</p>
+                </div>
+            </div>
+            <div class="footer__keep">
+                <div class="footer__social">
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/NEWSTAPA">
+                                <img src="https://storage.googleapis.com/media.newstapa.org/static/bundle/korean/assets/img/social/icon-follow-facebook.svg" alt="facebook logo">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://twitter.com/newstapa">
+                                <img src="https://storage.googleapis.com/media.newstapa.org/static/bundle/korean/assets/img/social/icon-follow-twitter.svg" alt="twitter logo">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://story.kakao.com/ch/newstapa">
+                                <img src="https://storage.googleapis.com/media.newstapa.org/static/bundle/korean/assets/img/social/icon-follow-kakaostory.svg" alt="kakaostory logo">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.youtube.com/user/newstapa">
+                                <img src="https://storage.googleapis.com/media.newstapa.org/static/bundle/korean/assets/img/social/icon-follow-youtube.svg" alt="youtube logo">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="./app.js"></script>
+</body>
+</html>
